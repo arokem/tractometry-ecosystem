@@ -1,10 +1,213 @@
-@article{neurolibre:2021,
-  title={Neurolibre: A preprint server for interactive data analyses},
-  author={Karakuzu, Agah and DuPre, Elizabeth and Tetrel, Loic and Boudreau, Mathieu and Poline, Jean-Baptiste and Stikov, Nikola and Bellec, Pierre},
-  journal={NeuroLibre},
-  volume={1},
-  number={1},
-  pages={1--2},
-  year={2021},
-  publisher={CONP}
+@ARTICLE{Kruper2024-ke,
+  title     = "Tractometry of the Human Connectome Project: resources and
+               insights",
+  author    = "Kruper, John and Hagen, Mckenzie P and Rheault, François and
+               Crane, Isaac and Gilmore, Asa and Narayan, Manjari and Motwani,
+               Keshav and Lila, Eardi and Rorden, Chris and Yeatman, Jason D and
+               Rokem, Ariel",
+  journal   = "Front. Neurosci.",
+  publisher = "Frontiers Media SA",
+  volume    =  18,
+  pages     =  1389680,
+  abstract  = "Introduction: The Human Connectome Project (HCP) has become a
+               keystone dataset in human neuroscience, with a plethora of
+               important applications in advancing brain imaging methods and an
+               understanding of the human brain. We focused on tractometry of
+               HCP diffusion-weighted MRI (dMRI) data. Methods: We used an
+               open-source software library (pyAFQ;
+               https://yeatmanlab.github.io/pyAFQ) to perform probabilistic
+               tractography and delineate the major white matter pathways in the
+               HCP subjects that have a complete dMRI acquisition (n = 1,041).
+               We used diffusion kurtosis imaging (DKI) to model white matter
+               microstructure in each voxel of the white matter, and extracted
+               tract profiles of DKI-derived tissue properties along the length
+               of the tracts. We explored the empirical properties of the data:
+               first, we assessed the heritability of DKI tissue properties
+               using the known genetic linkage of the large number of twin pairs
+               sampled in HCP. Second, we tested the ability of tractometry to
+               serve as the basis for predictive models of individual
+               characteristics (e.g., age, crystallized/fluid intelligence,
+               reading ability, etc.), compared to local connectome features. To
+               facilitate the exploration of the dataset we created a new
+               web-based visualization tool and use this tool to visualize the
+               data in the HCP tractometry dataset. Finally, we used the HCP
+               dataset as a test-bed for a new technological innovation: the TRX
+               file-format for representation of dMRI-based streamlines.
+               Results: We released the processing outputs and tract profiles as
+               a publicly available data resource through the AWS Open Data
+               program's Open Neurodata repository. We found heritability as
+               high as 0.9 for DKI-based metrics in some brain pathways. We also
+               found that tractometry extracts as much useful information about
+               individual differences as the local connectome method. We
+               released a new web-based visualization tool for
+               tractometry-``Tractoscope'' (https://nrdg.github.io/tractoscope).
+               We found that the TRX files require considerably less disk
+               space-a crucial attribute for large datasets like HCP. In
+               addition, TRX incorporates a specification for grouping
+               streamlines, further simplifying tractometry analysis.",
+  month     =  jun,
+  year      =  2024,
+  keywords  = "MRI; Open Data; brain; data visualization; diffusion MRI;
+               heritability; predictive modeling; tractometry",
+  language  = "en"
+}
+
+@ARTICLE{Yeatman2012AFQ,
+  title    = "Tract profiles of white matter properties: automating fiber-tract
+              quantification",
+  author   = "Yeatman, Jason D and Dougherty, Robert F and Myall, Nathaniel J
+              and Wandell, Brian A and Feldman, Heidi M",
+  abstract = "Tractography based on diffusion weighted imaging (DWI) data is a
+              method for identifying the major white matter fascicles (tracts)
+              in the living human brain. The health of these tracts is an
+              important factor underlying many cognitive and neurological
+              disorders. In vivo, tissue properties may vary systematically
+              along each tract for several reasons: different populations of
+              axons enter and exit the tract, and disease can strike at local
+              positions within the tract. Hence quantifying and understanding
+              diffusion measures along each fiber tract (Tract Profile) may
+              reveal new insights into white matter development, function, and
+              disease that are not obvious from mean measures of that tract. We
+              demonstrate several novel findings related to Tract Profiles in
+              the brains of typically developing children and children at risk
+              for white matter injury secondary to preterm birth. First,
+              fractional anisotropy (FA) values vary substantially within a
+              tract but the Tract FA Profile is consistent across subjects.
+              Thus, Tract Profiles contain far more information than mean
+              diffusion measures. Second, developmental changes in FA occur at
+              specific positions within the Tract Profile, rather than along
+              the entire tract. Third, Tract Profiles can be used to compare
+              white matter properties of individual patients to standardized
+              Tract Profiles of a healthy population to elucidate unique
+              features of that patient's clinical condition. Fourth, Tract
+              Profiles can be used to evaluate the association between white
+              matter properties and behavioral outcomes. Specifically, in the
+              preterm group reading ability is positively correlated with FA
+              measured at specific locations on the left arcuate and left
+              superior longitudinal fasciculus and the magnitude of the
+              correlation varies significantly along the Tract Profiles. We
+              introduce open source software for automated fiber-tract
+              quantification (AFQ) that measures Tract Profiles of MRI
+              parameters for 18 white matter tracts. With further validation,
+              AFQ Tract Profiles have potential for informing clinical
+              management and decision-making.",
+  journal  = "PLoS One",
+  volume   =  7,
+  number   =  11,
+  pages    = "e49790",
+  month    =  nov,
+  year     =  2012,
+  language = "en"
+}
+
+
+@ARTICLE{RichieHalford2021SGL,
+  title    = "Multidimensional analysis and detection of informative features
+              in human brain white matter",
+  author   = "Richie-Halford, Adam and Yeatman, Jason D and Simon, Noah and
+              Rokem, Ariel",
+  abstract = "The white matter contains long-range connections between
+              different brain regions and the organization of these connections
+              holds important implications for brain function in health and
+              disease. Tractometry uses diffusion-weighted magnetic resonance
+              imaging (dMRI) to quantify tissue properties along the
+              trajectories of these connections. Statistical inference from
+              tractometry usually either averages these quantities along the
+              length of each fiber bundle or computes regression models
+              separately for each point along every one of the bundles. These
+              approaches are limited in their sensitivity, in the former case,
+              or in their statistical power, in the latter. We developed a
+              method based on the sparse group lasso (SGL) that takes into
+              account tissue properties along all of the bundles and selects
+              informative features by enforcing both global and bundle-level
+              sparsity. We demonstrate the performance of the method in two
+              settings: i) in a classification setting, patients with
+              amyotrophic lateral sclerosis (ALS) are accurately distinguished
+              from matched controls. Furthermore, SGL identifies the
+              corticospinal tract as important for this classification,
+              correctly finding the parts of the white matter known to be
+              affected by the disease. ii) In a regression setting, SGL
+              accurately predicts ``brain age.'' In this case, the weights are
+              distributed throughout the white matter indicating that many
+              different regions of the white matter change over the lifespan.
+              Thus, SGL leverages the multivariate relationships between
+              diffusion properties in multiple bundles to make accurate
+              phenotypic predictions while simultaneously discovering the most
+              relevant features of the white matter.",
+  journal  = "PLoS Comput. Biol.",
+  volume   =  17,
+  number   =  6,
+  pages    = "e1009136",
+  month    =  jun,
+  year     =  2021,
+  language = "en"
+}
+
+
+@ARTICLE{Muncy2022GAMs,
+  title    = "General additive models address statistical issues in diffusion
+              {MRI}: An example with clinically anxious adolescents",
+  author   = "Muncy, Nathan M and Kimbler, Adam and Hedges-Muncy, Ariana M and
+              McMakin, Dana L and Mattfeld, Aaron T",
+  abstract = "Statistical models employed to test for group differences in
+              quantized diffusion-weighted MRI white matter tracts often fail
+              to account for the large number of data points per tract in
+              addition to the distribution, type, and interdependence of the
+              data. To address these issues, we propose the use of Generalized
+              Additive Models (GAMs) and supply code and examples to aid in
+              their implementation. Specifically, using diffusion data from 73
+              periadolescent clinically anxious and no-psychiatric-diagnosis
+              control participants, we tested for group tract differences and
+              show that a GAM allows for the identification of differences
+              within a tract while accounting for the nature of the data as
+              well as covariates and group factors. Further, we then used these
+              tract differences to investigate their association with
+              performance on a memory test. When comparing our high versus low
+              anxiety groups, we observed a positive association between the
+              left uncinate fasciculus and memory overgeneralization for
+              negatively valenced stimuli. This same association was not
+              evident in the right uncinate or anterior forceps. These findings
+              illustrate that GAMs are well-suited for modeling diffusion data
+              while accounting for various aspects of the data, and suggest
+              that the adoption of GAMs will be a powerful investigatory tool
+              for diffusion-weighted analyses.",
+  journal  = "Neuroimage Clin",
+  volume   =  33,
+  pages    = "102937",
+  month    =  jan,
+  year     =  2022,
+  keywords = "Adolescence; Anxiety; DWI; GAM; MRI; Uncinate",
+  language = "en"
+}
+
+
+@ARTICLE{Yeatman2018AFQBrowser,
+  title    = "A browser-based tool for visualization and analysis of diffusion
+              {MRI} data",
+  author   = "Yeatman, Jason D and Richie-Halford, Adam and Smith, Josh K and
+              Keshavan, Anisha and Rokem, Ariel",
+  abstract = "Human neuroscience research faces several challenges with regards
+              to reproducibility. While scientists are generally aware that
+              data sharing is important, it is not always clear how to share
+              data in a manner that allows other labs to understand and
+              reproduce published findings. Here we report a new open source
+              tool, AFQ-Browser, that builds an interactive website as a
+              companion to a diffusion MRI study. Because AFQ-Browser is
+              portable---it runs in any web-browser---it can facilitate
+              transparency and data sharing. Moreover, by leveraging new
+              web-visualization technologies to create linked views between
+              different dimensions of the dataset (anatomy, diffusion metrics,
+              subject metadata), AFQ-Browser facilitates exploratory data
+              analysis, fueling new discoveries based on previously published
+              datasets. In an era where Big Data is playing an increasingly
+              prominent role in scientific discovery, so will browser-based
+              tools for exploring high-dimensional datasets, communicating
+              scientific discoveries, aggregating data across labs, and
+              publishing data alongside manuscripts.",
+  journal  = "Nat. Commun.",
+  volume   =  9,
+  number   =  1,
+  pages    = "940",
+  month    =  mar,
+  year     =  2018
 }
