@@ -1,5 +1,5 @@
 ---
-title: 'A software ecosystem for brain tractometry processing, analysis, and insight'
+title: 'A software ecosystem for white matter tractometry'
 tags:
   - Preprint
   - Jupyter Book
@@ -43,9 +43,8 @@ of dMRI data.
 
 This work was funded by National Institutes of Health grants MH121868,
 MH121867, and EB027585, as well as by National Science Foundation grant
-1934292. Software development was also supported by the Chan Zuckerberg
+\#1934292. Software development was also supported by the Chan Zuckerberg
 Initiative's Essential Open Source Software for Science program, the Alfred P.
 Sloan Foundation and the Gordon \& Betty Moore Foundation.
-
 
 # References
