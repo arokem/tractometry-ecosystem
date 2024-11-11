@@ -10,9 +10,14 @@ os.environ["AFQ_HOME"] = op.join(pwd, "..", "data_", "tractometry")
 
 # Stanford HARDI
 import AFQ.data.fetch as afd
+import templateflow.api as tflow
 afd.organize_stanford_data()
 
 # Templates:
 afd.fetch_templates()
 afd.fetch_pediatric_templates()
+tflow.get('MNI152NLin2009cAsym',
+          resolution=resolution,
+          desc='brain',
+          suffix='mask')
 
