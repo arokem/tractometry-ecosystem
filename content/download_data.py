@@ -17,7 +17,7 @@ afd.organize_stanford_data()
 afd.fetch_templates()
 afd.fetch_pediatric_templates()
 tflow.get('MNI152NLin2009cAsym',
-          resolution=resolution,
+          resolution=1,
           desc='brain',
           suffix='mask')
 
