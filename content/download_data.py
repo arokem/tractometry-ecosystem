@@ -1,5 +1,5 @@
 
-# Set environment to point to local data directory for
+# Set environment to point to local data directory for dowonloading templates:
 
 import os
 import os.path as op
@@ -8,16 +8,31 @@ os.environ["TEMPLATEFLOW_HOME"] = op.join(pwd, "..", "data_", "tractometry")
 os.environ["DIPY_HOME"] = op.join(pwd, "..", "data_", "tractometry")
 os.environ["AFQ_HOME"] = op.join(pwd, "..", "data_", "tractometry")
 
-# Stanford HARDI
-import AFQ.data.fetch as afd
+
+from AFQ.data.fetch import (
+        read_templates,
+        read_pediatric_templates,
+        read_callosum_templates,
+        read_cp_templates,
+        read_or_templates,
+        read_ar_templates)
+
 import templateflow.api as tflow
-afd.organize_stanford_data()
+
+
+def download_templates():
+    read_templates()
+    read_pediatric_templates()
+    read_callosum_templates()
+    read_cp_templates()
+    read_or_templates()
+    read_ar_templates()
+
 
 # Templates:
-afd.fetch_templates()
-afd.fetch_pediatric_templates()
 tflow.get('MNI152NLin2009cAsym',
           resolution=1,
           desc='brain',
           suffix='mask')
 
+download_templates()
