@@ -38,7 +38,7 @@ tracometry_zip_f = tractomatry_dir + ".zip"
 
 
 if not op.exists(tracometry_zip_f):
-    figshare_path = "https://figshare.com/ndownloader/files/51919280"
+    figshare_path = "https://figshare.com/ndownloader/files/51919394"
     with requests.get(figshare_path, stream=True) as response:
         response.raise_for_status()
         
