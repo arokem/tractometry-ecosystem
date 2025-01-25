@@ -3,10 +3,15 @@
 
 import os
 import os.path as op
+import zipfile
+import requests
+from tqdm import tqdm
+
 pwd = os.getcwd()
-os.environ["TEMPLATEFLOW_HOME"] = op.join(pwd, "..", "data_", "tractometry")
-os.environ["DIPY_HOME"] = op.join(pwd, "..", "data_", "tractometry")
-os.environ["AFQ_HOME"] = op.join(pwd, "..", "data_", "tractometry")
+tractomatry_dir = op.join(pwd, "..", "data_", "tractometry")
+os.environ["TEMPLATEFLOW_HOME"] = tractomatry_dir
+os.environ["DIPY_HOME"] = tractomatry_dir
+os.environ["AFQ_HOME"] = tractomatry_dir
 
 
 from AFQ.data.fetch import (
@@ -28,6 +33,35 @@ def download_templates():
     read_or_templates()
     read_ar_templates()
 
+os.makedirs(tractomatry_dir, exist_ok=True)
+tracometry_zip_f = tractomatry_dir + ".zip"
+
+
+if not op.exists(tracometry_zip_f):
+    figshare_path = "https://figshare.com/ndownloader/files/51919394"
+    with requests.get(figshare_path, stream=True) as response:
+        response.raise_for_status()
+        
+        total_size = int(response.headers.get('content-length', 0))
+
+        with open(tracometry_zip_f, "wb") as file, tqdm(
+            desc="Downloading",
+            total=total_size,
+            unit='B',
+            unit_scale=True,
+            unit_divisor=1024,
+        ) as progress_bar:
+            for chunk in response.iter_content(chunk_size=8192):
+                if chunk:
+                    file.write(chunk)
+                    progress_bar.update(len(chunk))
+
+# Extract the ZIP file
+with zipfile.ZipFile(tracometry_zip_f, 'r') as zip_ref:
+    for file_ in tqdm(zip_ref.namelist(), desc="Unzipping"):
+        zip_ref.extract(file_, op.join(pwd, "..", "data_"))
+
+os.remove(tracometry_zip_f)
 
 # Templates:
 tflow.get('MNI152NLin2009cAsym',
