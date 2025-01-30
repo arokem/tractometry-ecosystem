@@ -184,8 +184,6 @@ else:
     roi_radii=10,
     fa_thr=0.7)
   model = ConstrainedSphericalDeconvModel(gtab, response, sh_order=args.sh_order)
-  # TODO: we shouldnt have to do this, also for CSA, but we populate delta_b, delta_q.
-  # we need to name change delta_b/delta_q and make it possible for them to be None, or something like this
   delta_b = model._X
   delta_q = model.B_reg
 
@@ -221,7 +219,6 @@ else:
 
   ## from BootPmfGen __init__
   # setup H and R matrices
-  # TODO: figure out how to get H, R matrices from direction getter object
   x, y, z = model.gtab.gradients[dwi_mask].T
   r, theta, phi = shm.cart2sphere(x, y, z)
   B, _, _ = shm.real_sym_sh_basis(args.sh_order, theta, phi)
@@ -322,7 +319,7 @@ for idx in range(int(nchunks)):
 
       offsets_idx = new_offsets_idx
       sls_data_idx = new_sls_data_idx
-      
+
       te = time.time()
       print("Streamlines to TRX format, time {} s".format(te-ts))
     else:
@@ -355,7 +352,7 @@ print("\tStreamline processing: {} sec".format(streamline_time))
 if args.output_prefix:
   print("\tFile writing: {} sec".format(io_time))
 ```
-Finally, we batch the seeds that we want to track from into the GPUStreamlines class we constructed. The batch size is set manually, and can be set as large as possible without exceeding the GPU's memory. The default batch size should work well in most cases. GPUStreamlines returns the streamlines for each batch, and you can work with them as you please. In this example, we save them as either TRK or TRX files. In the TRK case, we save multiple TRK files that we can merge later. In the TRX case, we save them to one large TRX file that we save out in the end. 
+Finally, we batch the seeds that we want to track from into the GPUStreamlines class we constructed. The batch size is set manually, and can be set as large as possible without exceeding the GPU's memory. The default batch size should work well in most cases. GPUStreamlines returns the streamlines for each batch, and you can work with them as you please. In this example, we save them as either TRK or TRX files. In the TRK case, we save multiple TRK files that we can merge later. In the TRX case, we save them to one large TRX file that we save out in the end.
 
 ---
 

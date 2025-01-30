@@ -1,11 +1,10 @@
 ---
-title: 'A software ecosystem for white matter tractometry'
+title: 'Computational examples of software for white matter tractometry'
 tags:
   - Preprint
   - Jupyter Book
   - Reproducible article
   - Neuroscience
-
 
 authors:
   - name: John Kruper
