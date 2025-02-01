@@ -6,13 +6,19 @@ import os.path as op
 import zipfile
 import requests
 from tqdm import tqdm
+import templateflow.api as tflow
 
-tractometry_dir = op.join(op.expanduser("~"), "data_", "tractometry")
+
+tractometry_dir = op.join(op.expanduser("~"), "data_")
 os.environ["TEMPLATEFLOW_HOME"] = tractometry_dir
 os.environ["DIPY_HOME"] = tractometry_dir
 os.environ["AFQ_HOME"] = tractometry_dir
 
+os.makedirs(tractometry_dir, exist_ok=True)
+tracometry_zip_f = tractometry_dir + ".zip"
 
+
+# These imports have to happen after setting "AFQ_HOME":
 from AFQ.data.fetch import (
         read_templates,
         read_pediatric_templates,
@@ -20,8 +26,6 @@ from AFQ.data.fetch import (
         read_cp_templates,
         read_or_templates,
         read_ar_templates)
-
-import templateflow.api as tflow
 
 
 def download_templates():
@@ -31,9 +35,6 @@ def download_templates():
     read_cp_templates()
     read_or_templates()
     read_ar_templates()
-
-os.makedirs(tractometry_dir, exist_ok=True)
-tracometry_zip_f = tractometry_dir + ".zip"
 
 
 if not op.exists(tracometry_zip_f):
@@ -58,7 +59,7 @@ if not op.exists(tracometry_zip_f):
 # Extract the ZIP file
 with zipfile.ZipFile(tracometry_zip_f, 'r') as zip_ref:
     for file_ in tqdm(zip_ref.namelist(), desc="Unzipping"):
-        zip_ref.extract(tractometry_dir)
+        zip_ref.extract(file_, tractometry_dir)
 
 os.remove(tracometry_zip_f)
 
