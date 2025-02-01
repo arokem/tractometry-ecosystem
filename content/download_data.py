@@ -6,6 +6,7 @@ import os.path as op
 import zipfile
 import requests
 from tqdm import tqdm
+import wget
 import templateflow.api as tflow
 
 
@@ -70,3 +71,14 @@ tflow.get('MNI152NLin2009cAsym',
           suffix='mask')
 
 download_templates()
+
+
+baby_zip = op.join(tractometry_dir, "baby_example.zip")
+
+if not op.exists(baby_zip):
+    print("Downloading processed pediatric data; this could take a while...")
+    wget.download("https://figshare.com/ndownloader/files/38053692", baby_zip)
+    baby_example_folder = op.join(tractometry_dir, "baby_example")
+    if not op.exists(baby_example_folder):
+        with zipfile.ZipFile(baby_zip, 'r') as zip_ref:
+            zip_ref.extractall(baby_example_folder)
