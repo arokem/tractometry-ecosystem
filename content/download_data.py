@@ -8,9 +8,13 @@ import requests
 from tqdm import tqdm
 import wget
 import templateflow.api as tflow
-
-
 tractometry_dir = op.join(op.expanduser("~"), "data_")
+
+import afqinsight.datasets
+afqinsight.datasets._DATA_DIR = op.join(tractometry_dir, "afq-insight")
+
+from afqinsight.datasets import download_weston_havens, download_sarica, download_hbn
+
 os.environ["TEMPLATEFLOW_HOME"] = tractometry_dir
 os.environ["DIPY_HOME"] = tractometry_dir
 os.environ["AFQ_HOME"] = tractometry_dir
@@ -29,13 +33,16 @@ from AFQ.data.fetch import (
         read_ar_templates)
 
 
-def download_templates():
+def download_data():
     read_templates()
     read_pediatric_templates()
     read_callosum_templates()
     read_cp_templates()
     read_or_templates()
     read_ar_templates()
+    download_weston_havens()
+    download_sarica()
+    download_hbn()
 
 
 if not op.exists(tracometry_zip_f):
@@ -70,7 +77,7 @@ tflow.get('MNI152NLin2009cAsym',
           desc='brain',
           suffix='mask')
 
-download_templates()
+download_data()
 
 
 baby_zip = op.join(tractometry_dir, "baby_example.zip")

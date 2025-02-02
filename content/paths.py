@@ -7,3 +7,7 @@ os.environ["DIPY_HOME"] = op.join(home, "data_", "tractometry")
 afq_home = op.join(home, "data_", "tractometry")
 os.makedirs(afq_home, exist_ok=True)
 os.environ["AFQ_HOME"] = afq_home
+
+import afqinsight.datasets
+afqinsight.datasets._DATA_DIR = op.join(afq_home, "afq-insight")
+
