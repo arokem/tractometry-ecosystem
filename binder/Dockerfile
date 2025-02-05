@@ -1,1 +1,1 @@
-FROM arokem/tractometry-ecosystem:20250201.linux.amd64
+FROM arokem/tractometry-ecosystem:20250204.linux.amd64

@@ -67,7 +67,7 @@ if not op.exists(tracometry_zip_f):
 # Extract the ZIP file
 with zipfile.ZipFile(tracometry_zip_f, 'r') as zip_ref:
     for file_ in tqdm(zip_ref.namelist(), desc="Unzipping"):
-        zip_ref.extract(file_, tractometry_dir)
+        zip_ref.extract(file_, op.join(op.expanduser("~"), "data_"))
 
 os.remove(tracometry_zip_f)
 

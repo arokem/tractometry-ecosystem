@@ -14,7 +14,7 @@ dependencies:
     - contourpy==1.3.1
     - scikit-image==0.24.0
     - afqinsight==0.6.1
-    - pyAFQ @ git+https://github.com/arokem/pyAFQ@neurolibre_docker
+    - pyAFQ @ git+https://github.com/arokem/pyAFQ@a6eff341a8f2dd6b29855f9ffdac29e60be495b5
     - dipy @ git+https://github.com/dipy/dipy@6c59e3935b489ccb1c875807743ee0b37b65ea25
     - ray
     - plotly==5.12.0
