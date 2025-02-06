@@ -15,4 +15,5 @@ dependencies:
     - trx-python==0.3
     - jupyter-server<2.0.0
     - dash
+    - cvxpy
     - tqdm
