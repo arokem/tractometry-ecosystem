@@ -1,1 +1,0 @@
-FROM arokem/tractometry-ecosystem:20250204.linux.amd64

@@ -4,22 +4,15 @@ channels:
 dependencies:
   - gcc
   - pip
+  - python==3.11
   - pip:
     - repo2data>=2.6.0
     - jupyter-book==0.14.0
-    - matplotlib==3.8.4
-    - imageio==2.36.0
-    - numpy==1.23.5
-    - h5py==3.12.1
-    - contourpy==1.3.1
-    - scikit-image==0.24.0
-    - afqinsight==0.6.1
-    - pyAFQ @ git+https://github.com/arokem/pyAFQ@a6eff341a8f2dd6b29855f9ffdac29e60be495b5
-    - dipy @ git+https://github.com/dipy/dipy@6c59e3935b489ccb1c875807743ee0b37b65ea25
+    - afqinsight>=0.7.1
+    - pyAFQ @ git+https://github.com/arokem/pyAFQ@main
+    - dipy
     - ray
-    - plotly==5.12.0
     - trx-python==0.3
     - jupyter-server<2.0.0
     - dash
-    - cvxpy==1.6.0
     - tqdm
