@@ -1,4 +1,4 @@
-# Running GPU Streamlines
+# GPU-accelerated tractography
 
 We have written a GPUStreamlines library for running tractography on NVIDIA GPUs. Given that the CUDA Toolkit and gcc are already installed, you can install GPUStreamlines by doing `pip install git+https://github.com/dipy/GPUStreamlines.git`. GPUStreamlines can also be run from pyAFQ. This is most conveniently installed using docker images that we build for each pyAFQ version and store here: `https://github.com/orgs/nrdg/packages/container/package/pyafq_gpu_cuda_12`. Then GPUStreamlines is run by adding the `tractography_ngpus` argument to either `GroupAFQ` or `ParticipantAFQ`. This markdown file will show you how to run GPUStreamlines directly if you do not want to run it through pyAFQ. It is based on an example script fond here: `https://github.com/dipy/GPUStreamlines/blob/master/run_gpu_streamlines.py`.
 
