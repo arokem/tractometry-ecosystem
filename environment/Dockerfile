@@ -9,6 +9,8 @@ ENV AFQ_HOME=/data
 
 RUN apt-get update && apt-get install ffmpeg libsm6 libxext6 xvfb -y
 
+RUN apt-get install msttcorefonts -qq
+
 RUN conda install -y \
         jupyter==1.1.1 \
     && conda clean -ya
