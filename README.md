@@ -1,29 +1,16 @@
-## Preprint template
+# A software ecosystem for brain tractometry processing, analysis, and insight
 
-Template repository for NeuroLibre reproducibe preprint submissions.
-
-### Step 1: Click `Use this template button` and name your new repository
-
-### Step 2: Do the following changes in [_config.yml](content/_config.yml)
-
-```yaml
-title                       : "NeuroLibre preprint template"  # Add your title
-author                      : John Doe, Jane Doe  # Add author names
-```
-```yaml
-repository:
-  url: https://github.com/neurolibre/template  # The URL to your new repository
-```
-> At this stage, you are ready to use [RoboNeuro preview service](https://roboneuro.herokuapp.com/) to get your first book build.
----
-### Step 3: Add your executable content under the `content` directory
-
-* ✅ You can add a mixture of `Jupyter Notebooks`, `MyST` formatted markdown and plain text markdown files.
-* ✅ You can organize your content in subfolders.
-* ❌ We don't accept (non-executable) plain text markdown files alone.
-
-### Step 4: Edit [_toc.yml](content/_toc.yml) according to your new content 
-
-### Step 5: Define your execution environment under the `binder` directory
-
-You can use any [BinderHub configuration files](https://mybinder.readthedocs.io/en/latest/using/config_files.html) that you need.
+Tractometry uses diffusion-weighted magnetic resonance imaging (dMRI) to assess
+the physical properties of long-range brain connections. Here, we present an
+integrative ecosystem of software that performs all steps of tractometry:
+post-processing of dMRI data, delineation of major white matter pathways, and
+modeling of the tissue properties within them. This ecosystem also provides
+tools to extract insights from these measurements: It includes novel
+implementations of machine learning and statistical analysis methods that
+consider the unique structure of tractometry data. Additionally, it offers
+tools for visualization and interpretation of the results. Taken together,
+these open-source software tools provide a comprehensive environment for the
+analysis of dMRI data. We benchmark characteristic performance of these
+statistical analysis methods in a range of different datasets and analysis
+tasks, including hypothesis testing on group differences and predictive
+analysis of subject age.
