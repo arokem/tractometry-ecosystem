@@ -2,7 +2,8 @@
 ## Computational examples 
 
 This Code Ocean capsule contains computational examples of the different components of the 
-[tractometry.org](https://tractometry.org) ecosystem 
+[tractometry.org](https://tractometry.org) ecosystem. Most of these examples should be run 
+interactively in one of the jupyter interfaces that are available through Code Ocean.
 
 [001-pyafq.ipynb](/code/001-pyafq.ipynb): An introduction to the pyAFQ software 
 
@@ -31,5 +32,3 @@ This Code Ocean capsule contains computational examples of the different compone
 [013-tractable](/code/013-tractable.Rmd): Modeling tract profiles with GAMs
 
 The data is stored as part of the capsule, but can also be downloaded in other contexts by running: `python /code/download_data.py`
-
-
