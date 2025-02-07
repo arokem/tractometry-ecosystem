@@ -1,4 +1,4 @@
-name: example-environment
+name: book
 channels:
   - conda-forge
 dependencies:
