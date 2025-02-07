@@ -1,11 +1,11 @@
 metadata_version: 1
 name: A software ecosystem for brain tractometry processing, analysis, and insight
 tags:
-- Brain 
+- Brain
 - MRI
 - Image processing
-- Open source software 
-- High-performance computing 
+- Open source software
+- High-performance computing
 authors:
 - name: John Kruper
   affiliations:
