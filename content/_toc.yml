@@ -21,15 +21,21 @@ parts:
   - caption: Adding a custom tract - SLF subdivisions
     chapters:
     - file: 007-SLF-Subdivisions
-
-[008-GPU-Tractography](/code/008-GPU-Tractography.md): GPU-accelerated tractography 
-
-[009-Ray-MSMT](/code/009-Ray-MSMT): Ray-accelerated modeling 
-
-[010-afqinsight-mass-univariate](/code/010-afqinsight-mass-univariate.ipynb): Mass univariate statistical analysis 
-
-[011-afqinsight-regression](/code/011-afqinsight-regression.ipynb): Regression 
-
-[012-afqinsight-classification](/code/011-afqinsight-classification.ipynb): Classification
-
-[013-tractable](/code/013-tractable.Rmd): Modeling tract profiles with GAMs
+  - caption: GPU-accelerated tractography 
+    chapters:
+    - file: 008-GPU-Tractography
+  - caption: Ray-accelerated modeling 
+    chapters:
+    - file: 009-Ray-MSMT 
+  - caption: Mass univariate statistical analysis 
+    chapters:
+    - file: 010-afqinsight-mass-univariate
+  - caption: Regression 
+    chapters:
+    - file: 011-afqinsight-regression
+  - caption: Classiciation
+    chapters:
+    - file: 012-afqinsight-classification
+  - caption: Modeling tract profiles with GAMs
+    chapters:
+    - file: 013-tractable
