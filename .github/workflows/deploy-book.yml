@@ -32,7 +32,7 @@ jobs:
       with:
         path: "content/_build/html"
 
-    # Deploy the book's HTML to GitHub Pages
-    - name: Deploy to GitHub Pages
-      id: deployment
-      uses: actions/deploy-pages@v2
+    - name: Publish docs to Github Pages
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        folder: content/_build/html
