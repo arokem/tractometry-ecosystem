@@ -22,7 +22,7 @@ jobs:
       with:
         environment-file: binder/environment.yml
         miniforge-version: latest
-    - name: Install dependencies
+    - name: Create env and build the book
       run:
         jupyter-book build content
 
