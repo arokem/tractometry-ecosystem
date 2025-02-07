@@ -7,9 +7,12 @@ ENV TEMPLATEFLOW_HOME=/data
 ENV DIPY_HOME=/data
 ENV AFQ_HOME=/data
 
+RUN apt-get update && apt-get install ffmpeg libsm6 libxext6  -y
+
 RUN conda install -y \
         jupyter==1.1.1 \
     && conda clean -ya
+
 
 RUN pip install -U --no-cache-dir \
     afqinsight==0.7.1 \
