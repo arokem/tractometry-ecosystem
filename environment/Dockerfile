@@ -20,5 +20,6 @@ RUN pip install -U --no-cache-dir \
     tqdm \
     trx-python==0.3 \
     pyAFQ@git+https://github.com/tractometry/pyAFQ@main \
+    fury 
 
-
+RUN Rscript -e "install.packages(c('remotes', 'Hmisc'), repos='https://cloud.r-project.org'); remotes::install_github('tractometry/tractable')"
