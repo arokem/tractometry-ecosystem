@@ -1,0 +1,18 @@
+metadata_version: 1
+name: A software ecosystem for brain tractometry processing, analysis, and insight
+tags:
+- Brain
+- MRI
+- Image processing
+- Open source software
+- High-performance computing
+authors:
+- name: John Kruper
+  affiliations:
+  - name: University of Washington
+- name: Ariel Rokem
+  affiliations:
+  - name: University of Washington
+corresponding_contributor:
+  name: Ariel Rokem
+  email: arokem@uw.edu

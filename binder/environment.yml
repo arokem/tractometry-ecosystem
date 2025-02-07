@@ -16,4 +16,5 @@ dependencies:
     - jupyter-server<2.0.0
     - dash
     - cvxpy
+    - fury==0.12
     - tqdm

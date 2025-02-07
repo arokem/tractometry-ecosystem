@@ -1,0 +1,111 @@
+---
+title: "Fitting Generalized Additive Models (GAMs)"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Fitting Generalized Additive Models (GAMs)}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+options(scipen = 1, digits = 4) # set to four decimal 
+```
+
+This vignette demonstrates the use of GAMs for statistical analysis of
+tract profile data. The data we will use here contains tract profiles from
+diffusion MRI measurements in a group of patients with Amyotrophic Lateral
+Sclerosis (ALS) and a group of matched controls [@Sarica2017].
+
+We start by loading the `tractable` library:
+
+```{r setup}
+library(tractable)
+```
+
+Next, we will use a function that is included in `tractable` to read this dataset directly into memory. 
+
+Importantly, both the group ("ALS" or "CTRL") and the subject identifier ("subjectID") need to be factors for subsequent analysis to work properly.
+
+```{r load_data}
+df_sarica <- read_afq_sarica(na_omit = TRUE)
+df_sarica
+```
+
+First, let's visualize the data. We use the `plot_tract_profiles` function,
+selecting to view both fractional anisotropy (FA) and mean diffusivity profiles
+in two tracts: the right corticospinal tract (CST) and the right superior
+longitudinal fasciculus (SLF), which are identified in the "tractID" column of
+this dataset.
+
+```{r plot_profiles}
+plot_handles <- plot_tract_profiles(
+  df          = df_sarica,
+  y           = c("fa", "md"),
+  tracts      = c("Right Corticospinal", "Right SLF"),
+  group_col   = "group",
+  save_figure = FALSE
+)
+```
+
+```{r plot_fa, fig.align = "center", fig.width = 7.25, fig.height = 4}
+plot_handles$fa
+```
+
+```{r plot_md, fig.align = "center", fig.width = 7.25, fig.height = 4}
+plot_handles$md
+```
+
+
+We can already see that ALS has a profound effect on the tract profiles of the
+CST, but does not affect SLF as much. We will use GAMs in order to quantify
+this in statistical terms. We start by fitting a GAM model to the data from the
+CST. Using the `tractable_single_tract` function, we select the Right CST data,
+and focus here only on FA. We use "group" and "age" as relevant covariates.
+Comparing group as a main effect, that will also be used to fit separate
+smooth functions for each category of subjects. The `mgcv` GAM functions
+use a parameter `k` to determine how many spline functions to use in fitting
+the smooth change of FA over the length of the tract. We use an automated
+strategy to find `k`.
+
+```{r cst_model_fit}
+cst_fit <- tractable_single_tract(
+  df         = df_sarica,
+  tract      = "Right Corticospinal",
+  target     = "fa",
+  regressors = c("age", "group"),
+  node_group = "group",
+  k          = "auto"
+)
+
+cst_summary <- summary(cst_fit)
+cst_summary
+```
+
+Examining the summary of the resulting GAM fit object shows us that the `k = 9`
+is sufficiently large to describe the spatial variation of tract profile data.
+In addition, we see that there is a statistically significant effect of group
+(with a p-value of `r cst_summary$p.table["groupCTRL", "Pr(>|t|)"]`) and no statistically significant effect of age
+(p = `r cst_summary$p.table["age", "Pr(>|t|)"]`).
+
+Running the same analysis on the data from SLF, we see that there is no
+significant difference between the groups in this tract, indicating that the
+effect observed in CST is rather specific to this tract.
+
+```{r slf_model_fit}
+slf_fit <- tractable_single_tract(
+  df         = df_sarica,
+  tract      = "Right SLF",
+  target     = "fa",
+  regressors = c("age", "group"),
+  node_group = "group",
+  k          = "auto"
+)
+
+slf_summary <- summary(slf_fit)
+slf_summary
+```
+

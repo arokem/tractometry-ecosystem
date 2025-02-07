@@ -1,24 +1,22 @@
-#######################################################################################
+################################################################################
 # A default configuration that will be loaded for all jupyter books
 # Users are expected to override these values in their own `_config.yml` file.
 # This is also the "master list" of all allowed keys and values.
-
-#######################################################################################
-# Book settings
+################################################################################ Book settings
 title                       : "A software ecosystem for brain tractometry processing, analysis, and insight"  # The title of the book. Will be placed in the left navbar.
 author                      : John Kruper, Adam Richie-Halford, Ethan Roy, Sendy Caffara, Mareike Grotheer, Teresa Gomez, Joanna Qiao, Asa Gilmore, Sam Chou, Matthew Cieslak, Theodore D. Sattherthwaite, Jason D. Yeatman, Ariel Rokem  # The author of the book
+author                      : John Kruper, Ariel Rokem  # The author of the book
 copyright                   : "2024"  # Copyright year to be placed in the footer
 logo                        : "neurolibre-logo.png"  # A path to the book logo
 exclude_patterns            : []  # Patterns to skip when building the book. Can be glob-style (e.g. "*skip.ipynb")
 
-#######################################################################################
-# Execution settings
+################################################################################# Execution settings
 execute:
   execute_notebooks         : auto  # Whether to execute notebooks at build time. Must be one of ("auto", "force", "cache", "off")
   cache                     : ""  # A path to the jupyter cache that will be used to store execution artifacs. Defaults to `_build/.jupyter_cache/`
   exclude_patterns          : []  # A list of patterns to *skip* in execution (e.g. a notebook that takes a really long time)
   timeout                   : -1  # remove restriction on execution time
-#######################################################################################
+#################################################################################
 # HTML-specific settings
 html:
   favicon                   : ""  # A path to a favicon image
@@ -31,7 +29,7 @@ html:
   home_page_in_navbar       : true  # Whether to include your home page in the left Navigation Bar
   baseurl                   : ""  # The base URL where your book will be hosted. Used for creating image previews and social links. e.g.: https://mypage.com/mybook/
 
-#######################################################################################
+#################################################################################
 # Launch button settings
 launch_buttons:
   notebook_interface        : classic  # The interface interactive links will activate ["classic", "jupyterlab"]
@@ -49,4 +47,4 @@ html_theme_options:
     image_light: "neurolibre-logo.png"
     image_dark: "neurolibre-logo.png"
 
-#######################################################################################
+#################################################################################

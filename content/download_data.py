@@ -1,5 +1,5 @@
 
-# Set environment to point to local data directory for dowonloading templates:
+# Download data only needed for local runs. In Code Ocean, this has all happened already.
 
 import os
 import os.path as op
@@ -8,7 +8,7 @@ import requests
 from tqdm import tqdm
 import wget
 import templateflow.api as tflow
-tractometry_dir = op.join(op.expanduser("~"), "data_", "tractometry")
+tractometry_dir = op.join("../data")
 
 import afqinsight.datasets
 afqinsight.datasets._DATA_DIR = op.join(tractometry_dir, "afq-insight")
@@ -67,7 +67,7 @@ if not op.exists(tracometry_zip_f):
 # Extract the ZIP file
 with zipfile.ZipFile(tracometry_zip_f, 'r') as zip_ref:
     for file_ in tqdm(zip_ref.namelist(), desc="Unzipping"):
-        zip_ref.extract(file_, op.join(op.expanduser("~"), "data_"))
+        zip_ref.extract(file_, "../data"))
 
 os.remove(tracometry_zip_f)
 

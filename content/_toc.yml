@@ -1,9 +1,41 @@
 format: jb-book
-root: 00-simple_markdown
 parts:
   - caption: pyAFQ
     chapters:
-    - file: 01-pyAFQ
-  - caption: MyST
+    - file: 001-pyafq
+  - caption: Visualization
     chapters:
-    - file: 02-simple-myst
+    - file: 002-viz
+  - caption: Baby AFQ
+    chapters:
+    - file: 003-babyAFQ
+  - caption: RecoBundles
+    chapters:
+    - file: 004-RecoBundles
+  - caption: Adding a custom tract - optic radiations
+    chapters:
+    - file: 005-Optic-Radiations
+  - caption: Adding a custom tract - acoustic radiations
+    chapters:
+    - file: 006-Acoustic-Radiations
+  - caption: Adding a custom tract - SLF subdivisions
+    chapters:
+    - file: 007-SLF-Subdivisions
+  - caption: GPU-accelerated tractography
+    chapters:
+    - file: 008-GPU-Tractography
+  - caption: Ray-accelerated modeling
+    chapters:
+    - file: 009-Ray-MSMT
+  - caption: Mass univariate statistical analysis
+    chapters:
+    - file: 010-afqinsight-mass-univariate
+  - caption: Regression
+    chapters:
+    - file: 011-afqinsight-regression
+  - caption: Classiciation
+    chapters:
+    - file: 012-afqinsight-classification
+  - caption: Modeling tract profiles with GAMs
+    chapters:
+    - file: 013-tractable
