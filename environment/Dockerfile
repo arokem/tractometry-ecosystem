@@ -7,7 +7,7 @@ ENV TEMPLATEFLOW_HOME=/data
 ENV DIPY_HOME=/data
 ENV AFQ_HOME=/data
 
-RUN apt-get update && apt-get install ffmpeg libsm6 libxext6  -y
+RUN apt-get update && apt-get install ffmpeg libsm6 libxext6 xvfb -y
 
 RUN conda install -y \
         jupyter==1.1.1 \
@@ -21,6 +21,7 @@ RUN pip install -U --no-cache-dir \
     dipy==1.10 \
     ray==2.42.0 \
     tqdm \
+    xvfbwrapper \
     trx-python==0.3 \
     pyAFQ@git+https://github.com/tractometry/pyAFQ@main \
     fury 
