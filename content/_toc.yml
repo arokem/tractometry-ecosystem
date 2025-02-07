@@ -1,4 +1,5 @@
 format: jb-book
+root: book.rst
 parts:
   - caption: pyAFQ
     chapters:
@@ -8,7 +9,7 @@ parts:
     - file: 002-viz
   - caption: Baby AFQ
     chapters:
-    - file: 003-babyAFQ
+    - file: 003-BabyAFQ
   - caption: RecoBundles
     chapters:
     - file: 004-RecoBundles
@@ -36,6 +37,3 @@ parts:
   - caption: Classiciation
     chapters:
     - file: 012-afqinsight-classification
-  - caption: Modeling tract profiles with GAMs
-    chapters:
-    - file: 013-tractable
