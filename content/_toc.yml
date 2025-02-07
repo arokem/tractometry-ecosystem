@@ -1,0 +1,35 @@
+format: jb-book
+parts:
+  - caption: pyAFQ
+    chapters:
+    - file: 001-pyafq
+  - caption: Visualization
+    chapters:
+    - file: 002-viz
+  - caption: Baby AFQ
+    chapters:
+    - file: 003-babyAFQ
+  - caption: RecoBundles
+    chapters:
+    - file: 004-RecoBundles
+  - caption: Adding a custom tract - optic radiations
+    chapters:
+    - file: 005-Optic-Radiations
+  - caption: Adding a custom tract - acoustic radiations
+    chapters:
+    - file: 006-Acoustic-Radiations
+  - caption: Adding a custom tract - SLF subdivisions
+    chapters:
+    - file: 007-SLF-Subdivisions
+
+[008-GPU-Tractography](/code/008-GPU-Tractography.md): GPU-accelerated tractography 
+
+[009-Ray-MSMT](/code/009-Ray-MSMT): Ray-accelerated modeling 
+
+[010-afqinsight-mass-univariate](/code/010-afqinsight-mass-univariate.ipynb): Mass univariate statistical analysis 
+
+[011-afqinsight-regression](/code/011-afqinsight-regression.ipynb): Regression 
+
+[012-afqinsight-classification](/code/011-afqinsight-classification.ipynb): Classification
+
+[013-tractable](/code/013-tractable.Rmd): Modeling tract profiles with GAMs
