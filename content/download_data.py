@@ -8,7 +8,7 @@ import requests
 from tqdm import tqdm
 import wget
 import templateflow.api as tflow
-tractometry_dir = op.join("../data")
+tractometry_dir = op.join("../data/tractometry")
 
 import afqinsight.datasets
 afqinsight.datasets._DATA_DIR = op.join(tractometry_dir, "afq-insight")

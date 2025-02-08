@@ -1,6 +1,12 @@
 # GPU-accelerated tractography
 
-We have written a GPUStreamlines library for running tractography on NVIDIA GPUs. Given that the CUDA Toolkit and gcc are already installed, you can install GPUStreamlines by doing `pip install git+https://github.com/dipy/GPUStreamlines.git`. GPUStreamlines can also be run from pyAFQ. This is most conveniently installed using docker images that we build for each pyAFQ version and store here: `https://github.com/orgs/nrdg/packages/container/package/pyafq_gpu_cuda_12`. Then GPUStreamlines is run by adding the `tractography_ngpus` argument to either `GroupAFQ` or `ParticipantAFQ`. This markdown file will show you how to run GPUStreamlines directly if you do not want to run it through pyAFQ. It is based on an example script fond here: `https://github.com/dipy/GPUStreamlines/blob/master/run_gpu_streamlines.py`.
+The process of tractography is a major bottleneck in executing tractometry pipelines. GPUs provide an opportunity for massive 
+parallelization and opportunities to accelerate tractography substantially, reducing this bottleneck and enabling rapid large-scale 
+analysis. We have written the `GPUStreamlines` library for running tractography on NVIDIA GPUs. 
+
+The code includes Python bindings and if the CUDA Toolkit and gcc are already installed, you can install GPUStreamlines by running the standard `pip install git+https://github.com/dipy/GPUStreamlines.git`. 
+
+GPUStreamlines can also be run from pyAFQ itself if it is installed. It is most conveniently installed using Docker containers, and  we build and distribute containers for each pyAFQ version, which you can find here: `https://github.com/orgs/nrdg/packages/container/package/pyafq_gpu_cuda_12`. This container includes both the GPUStreamlines software as well as pyAFQ, and then GPU-accelerated tractography will be run by adding the `tractography_ngpus` argument to either `GroupAFQ` or `ParticipantAFQ` APIs. The scripts included below demonstrate how to run GPUStreamlines directly if you do not want to run it through pyAFQ. It is based on an example script found here: `https://github.com/dipy/GPUStreamlines/blob/master/run_gpu_streamlines.py`.
 
 ---
 

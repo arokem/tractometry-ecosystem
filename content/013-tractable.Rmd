@@ -18,7 +18,7 @@ options(scipen = 1, digits = 4) # set to four decimal
 This vignette demonstrates the use of GAMs for statistical analysis of
 tract profile data. The data we will use here contains tract profiles from
 diffusion MRI measurements in a group of patients with Amyotrophic Lateral
-Sclerosis (ALS) and a group of matched controls [@Sarica2017].
+Sclerosis (ALS) and a group of matched controls (Sarica, 2017)
 
 We start by loading the `tractable` library:
 
@@ -88,8 +88,8 @@ cst_summary
 Examining the summary of the resulting GAM fit object shows us that the `k = 9`
 is sufficiently large to describe the spatial variation of tract profile data.
 In addition, we see that there is a statistically significant effect of group
-(with a p-value of `r cst_summary$p.table["groupCTRL", "Pr(>|t|)"]`) and no statistically significant effect of age
-(p = `r cst_summary$p.table["age", "Pr(>|t|)"]`).
+(with a p-value of `r cst_summary$p.table["groupCTRL", "Pr(>|t|)"]`) and no 
+statistically significant effect of age (p = `r cst_summary$p.table["age", "Pr(>|t|)"]`).
 
 Running the same analysis on the data from SLF, we see that there is no
 significant difference between the groups in this tract, indicating that the
