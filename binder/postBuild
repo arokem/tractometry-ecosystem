@@ -1,2 +1,1 @@
 jupyter lab build
-python content/download_data.py
