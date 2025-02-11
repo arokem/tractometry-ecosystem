@@ -4,7 +4,6 @@
 # This is also the "master list" of all allowed keys and values.
 ################################################################################ Book settings
 title                       : "A software ecosystem for brain tractometry processing, analysis, and insight"  # The title of the book. Will be placed in the left navbar.
-author                      : John Kruper, Adam Richie-Halford, Ethan Roy, Sendy Caffara, Mareike Grotheer, Teresa Gomez, Joanna Qiao, Asa Gilmore, Sam Chou, Matthew Cieslak, Theodore D. Sattherthwaite, Jason D. Yeatman, Ariel Rokem  # The author of the book
 author                      : John Kruper, Ariel Rokem  # The author of the book
 copyright                   : "2024"  # Copyright year to be placed in the footer
 logo                        : "neurolibre-logo.png"  # A path to the book logo
