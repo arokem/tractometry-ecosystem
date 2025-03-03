@@ -14,3 +14,5 @@ analysis of dMRI data. We benchmark characteristic performance of these
 statistical analysis methods in a range of different datasets and analysis
 tasks, including hypothesis testing on group differences and predictive
 analysis of subject age.
+
+[![Binder](https://binder-preview.conp.cloud/badge_logo.svg)](https://binder-preview.conp.cloud/v2/gh/tractometry/tractometry-ecosystem/HEAD)
