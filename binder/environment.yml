@@ -8,7 +8,7 @@ dependencies:
     - repo2data>=2.6.0
     - jupyter-book==0.14.0
     - afqinsight>=0.7.1
-    - pyAFQ @ git+https://github.com/arokem/pyAFQ@read_only
+    - pyAFQ @ git+https://github.com/arokem/pyAFQ@edfcb23
     - dipy
     - ray
     - trx-python==0.3
