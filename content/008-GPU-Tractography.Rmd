@@ -1,14 +1,34 @@
-# GPU-accelerated tractography
+---
+title: "GPU-accelerated tractography"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{GPU-accelerated tractography}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
 
+# Introduction
 The process of tractography is a major bottleneck in executing tractometry pipelines. GPUs provide an opportunity for massive 
 parallelization and opportunities to accelerate tractography substantially, reducing this bottleneck and enabling rapid large-scale 
-analysis. We have written the `GPUStreamlines` library for running tractography on NVIDIA GPUs. 
+analysis. We have written the `GPUStreamlines` library for running tractography on NVIDIA GPUs.
 
-The code includes Python bindings and if the CUDA Toolkit and gcc are already installed, you can install GPUStreamlines by running the standard `pip install git+https://github.com/dipy/GPUStreamlines.git`. 
+The code includes Python bindings, and if the CUDA Toolkit and gcc are already installed, you can install GPUStreamlines by running the standard:
 
-GPUStreamlines can also be run from pyAFQ itself if it is installed. It is most conveniently installed using Docker containers, and  we build and distribute containers for each pyAFQ version, which you can find here: `https://github.com/orgs/nrdg/packages/container/package/pyafq_gpu_cuda_12`. This container includes both the GPUStreamlines software as well as pyAFQ, and then GPU-accelerated tractography will be run by adding the `tractography_ngpus` argument to either `GroupAFQ` or `ParticipantAFQ` APIs. The scripts included below demonstrate how to run GPUStreamlines directly if you do not want to run it through pyAFQ. It is based on an example script found here: `https://github.com/dipy/GPUStreamlines/blob/master/run_gpu_streamlines.py`.
+```bash
+pip install git+https://github.com/dipy/GPUStreamlines.git
+```
 
----
+GPUStreamlines can also be run from pyAFQ itself if it is installed. It is most conveniently installed using Docker containers. We build and distribute containers for each pyAFQ version, which you can find here:
+
+```
+https://github.com/orgs/nrdg/packages/container/package/pyafq_gpu_cuda_12
+```
+
+This container includes both the GPUStreamlines software as well as pyAFQ. GPU-accelerated tractography can then be run by adding the `tractography_ngpus` argument to either the `GroupAFQ` or `ParticipantAFQ` APIs. The scripts included below demonstrate how to run GPUStreamlines directly if you do not want to run it through pyAFQ. The example is based on the script found here:
+
+```
+https://github.com/dipy/GPUStreamlines/blob/master/run_gpu_streamlines.py
+```
 
 ## Importing Required Libraries
 
@@ -46,8 +66,6 @@ from trx.trx_file_memmap import TrxFile, zip_from_folder
 import cuslines
 ```
 
----
-
 ## Argument Parsing
 
 ```python
@@ -58,78 +76,67 @@ parser.add_argument("bvals", nargs='?', default='hardi', help="path to the bvals
 parser.add_argument("bvecs", nargs='?', default='hardi', help="path to the bvecs")
 parser.add_argument("mask_nifti", nargs='?', default='hardi', help="path to the mask file")
 parser.add_argument("roi_nifti", nargs='?', default='hardi', help="path to the ROI file")
-parser.add_argument("--device", type=str, default ='gpu', choices=['cpu', 'gpu'], help="Whether to use cpu or gpu")
-parser.add_argument("--output-prefix", type=str, default ='', help="path to the output file")
-parser.add_argument("--chunk-size", type=int, default=100000, help="how many seeds to process per sweep, per GPU")
-parser.add_argument("--nseeds", type=int, default=100000, help="how many seeds to process in total")
-parser.add_argument("--ngpus", type=int, default=1, help="number of GPUs to use if using gpu")
+parser.add_argument("--device", type=str, default='gpu', choices=['cpu', 'gpu'], help="Whether to use CPU or GPU")
+parser.add_argument("--output-prefix", type=str, default='', help="Path to the output file")
+parser.add_argument("--chunk-size", type=int, default=100000, help="Number of seeds to process per sweep, per GPU")
+parser.add_argument("--nseeds", type=int, default=100000, help="Total number of seeds to process")
+parser.add_argument("--ngpus", type=int, default=1, help="Number of GPUs to use")
 parser.add_argument("--write-method", type=str, default="fast", help="Can be trx, fast, or standard")
-parser.add_argument("--max-angle", type=float, default=60, help="max angle (in degrees)")
-parser.add_argument("--min-signal", type=float, default=1.0, help="default: 1.0")
-parser.add_argument("--step-size", type=float, default=0.5, help="default: 0.5")
-parser.add_argument("--sh-order",type=int,default=4,help="sh_order")
-parser.add_argument("--fa-threshold",type=float,default=0.1,help="FA threshold")
-parser.add_argument("--relative-peak-threshold",type=float,default=0.25,help="relative peak threshold")
-parser.add_argument("--min-separation-angle",type=float,default=45,help="min separation angle (in degrees)")
-parser.add_argument("--sm-lambda",type=float,default=0.006,help="smoothing lambda")
-parser.add_argument("--model", type=str, default="opdt", choices=['opdt', 'csa', 'csd'], help="model to use")
-parser.add_argument("--dg", type=str, default="boot", choices=['boot', 'prob', 'ptt'], help="direction getting scheme to use")
+parser.add_argument("--max-angle", type=float, default=60, help="Maximum angle (in degrees)")
+parser.add_argument("--min-signal", type=float, default=1.0, help="Minimum signal threshold")
+parser.add_argument("--step-size", type=float, default=0.5, help="Step size")
+parser.add_argument("--sh-order", type=int, default=4, help="Spherical harmonics order")
+parser.add_argument("--fa-threshold", type=float, default=0.1, help="FA threshold")
+parser.add_argument("--relative-peak-threshold", type=float, default=0.25, help="Relative peak threshold")
+parser.add_argument("--min-separation-angle", type=float, default=45, help="Minimum separation angle (in degrees)")
+parser.add_argument("--sm-lambda", type=float, default=0.006, help="Smoothing lambda")
+parser.add_argument("--model", type=str, default="opdt", choices=['opdt', 'csa', 'csd'], help="Model to use")
+parser.add_argument("--dg", type=str, default="boot", choices=['boot', 'prob', 'ptt'], help="Direction getting scheme")
 
 args = parser.parse_args()
 ```
-Here we expose several useful arguments to the command line and provide explanations for each. Some of these arguments are for model fitting or data selection, which as you will see, can be customized further before calling the GPUStreamlines class. This script is just providing a minimal example of how to call GPUStreamlines.
-
----
 
 ## Processing Diffusion Data
 
 ```python
 t0 = time.time()
 
-# set seed to get deterministic streamlines
 np.random.seed(0)
 random.seed(0)
 
-#Get Gradient values
 def get_gtab(fbval, fbvec):
     bvals, bvecs = read_bvals_bvecs(fbval, fbvec)
-    gtab = gradient_table(bvals, bvecs)
-    return gtab
+    return gradient_table(bvals, bvecs)
 
 def get_img(ep2_seq):
-    img = nib.load(ep2_seq)
-    return img
+    return nib.load(ep2_seq)
 
 if 'hardi' in [args.nifti_file, args.bvals, args.bvecs, args.mask_nifti, args.roi_nifti]:
-  if not all(arg == 'hardi' for arg in [args.nifti_file, args.bvals, args.bvecs, args.mask_nifti, args.roi_nifti]):
-    raise ValueError("If any of the arguments is 'hardi', all must be 'hardi'")
-  # Get Stanford HARDI data
-  hardi_nifti_fname, hardi_bval_fname, hardi_bvec_fname = get_fnames('stanford_hardi')
-  csf, gm, wm = read_stanford_pve_maps()
-  wm_data = wm.get_fdata()
+    if not all(arg == 'hardi' for arg in [args.nifti_file, args.bvals, args.bvecs, args.mask_nifti, args.roi_nifti]):
+        raise ValueError("If any argument is 'hardi', all must be 'hardi'")
 
-  img = get_img(hardi_nifti_fname)
-  voxel_order = "".join(aff2axcodes(img.affine))
+    hardi_nifti_fname, hardi_bval_fname, hardi_bvec_fname = get_fnames('stanford_hardi')
+    csf, gm, wm = read_stanford_pve_maps()
+    wm_data = wm.get_fdata()
 
-  gtab = get_gtab(hardi_bval_fname, hardi_bvec_fname)
-
-  data = img.get_fdata()
-  roi_data = (wm_data > 0.5)
-  mask = roi_data
+    img = get_img(hardi_nifti_fname)
+    voxel_order = "".join(aff2axcodes(img.affine))
+    gtab = get_gtab(hardi_bval_fname, hardi_bvec_fname)
+    data = img.get_fdata()
+    roi_data = (wm_data > 0.5)
+    mask = roi_data
 else:
-  img = get_img(args.nifti_file)
-  voxel_order = "".join(aff2axcodes(img.affine))
-  gtab = get_gtab(args.bvals, args.bvecs)
-  roi = get_img(args.roi_nifti)
-  mask = get_img(args.mask_nifti)
-  data = img.get_fdata()
-  roi_data = roi.get_fdata()
-  mask = mask.get_fdata()
+    img = get_img(args.nifti_file)
+    voxel_order = "".join(aff2axcodes(img.affine))
+    gtab = get_gtab(args.bvals, args.bvecs)
+    roi = get_img(args.roi_nifti)
+    mask = get_img(args.mask_nifti)
+    data = img.get_fdata()
+    roi_data = roi.get_fdata()
+    mask = mask.get_fdata()
 ```
 
 This section loads the diffusion data and extracts relevant attributes such as voxel ordering and data arrays. We provide a Stanford HARDI dataset for example purposes if no diffusion data is given.
-
----
 
 ## Tensor Model Fitting
 
@@ -150,8 +157,6 @@ seeds = np.asarray(utils.random_seeds_from_mask(
   affine=np.eye(4)))
 ```
 We fit a tensor model to the diffusion data using the Weighted Least Squares (WLS) method. Then, Fractional Anisotropy (FA) is computed and NaN values are replaced with zeros. This will be used as a proxy for a white matter mask, as a seed/stop mask for the tractography. Of course, you can pass your own numpy array in for the `metric_map` parameter and provide your own seeds if you have a better white matter mask and/or seeding strategy.
-
----
 
 ## Model Selection
 
@@ -237,7 +242,6 @@ else:
 
 In this long section we setup the model we are going to use for tractography. We have bootstrapping and probabilistic direction getting implemented as of time of writing, and are working on parallel transport tractography (ptt) direction getting. When using probabilistic or ptt, the data you pass into GPUStreamlines will be the fit model. When using bootstrapped direciton getting, you pass in the original DWI data as well as some model parameters. Note that the delta_b/delta_q parameters are unused in the probabilistic and ptt case. If you fit your own fODFs, they can be passed in to GPUStreamlines as long as they are in the DIPY format.
 
----
 ## Initializing GPUStreamlines
 
 ```python
@@ -359,8 +363,6 @@ if args.output_prefix:
   print("\tFile writing: {} sec".format(io_time))
 ```
 Finally, we batch the seeds that we want to track from into the GPUStreamlines class we constructed. The batch size is set manually, and can be set as large as possible without exceeding the GPU's memory. The default batch size should work well in most cases. GPUStreamlines returns the streamlines for each batch, and you can work with them as you please. In this example, we save them as either TRK or TRX files. In the TRK case, we save multiple TRK files that we can merge later. In the TRX case, we save them to one large TRX file that we save out in the end.
-
----
 
 ## Conclusion
 
