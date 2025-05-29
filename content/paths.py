@@ -1,10 +1,10 @@
 import os
 import os.path as op
 
-home = op.expanduser("~")
-os.environ["TEMPLATEFLOW_HOME"] = op.join(home, "data_", "tractometry")
-os.environ["DIPY_HOME"] = op.join(home, "data_", "tractometry")
-afq_home = op.join(home, "data_", "tractometry")
+home = op.join(op.expanduser("~"), "data", "tractometry", "tractometry")
+os.environ["TEMPLATEFLOW_HOME"] = home
+os.environ["DIPY_HOME"] = home
+afq_home = home
 os.makedirs(afq_home, exist_ok=True)
 os.environ["AFQ_HOME"] = afq_home
 
