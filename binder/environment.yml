@@ -17,5 +17,4 @@ dependencies:
     - cvxpy
     - fury==0.12
     - tqdm
-    - xvfbwrapper
   
