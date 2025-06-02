@@ -8,7 +8,7 @@ dependencies:
     - repo2data>=2.6.0
     - jupyter-book==0.14.0
     - afqinsight>=0.7.1
-    - pyAFQ @ git+https://github.com/36000/pyAFQ@c50c0c4d05dc4f70699754a5f73047a4b4ff37b3
+    - pyAFQ @ git+https://github.com/tractometry/pyAFQ@b2df8bd78cb2455908a6caea4e6eba8b4400af11
     - dipy
     - ray
     - trx-python==0.3
