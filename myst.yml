@@ -1,0 +1,72 @@
+version: 1
+project:
+  title: 'A software ecosystem for brain tractometry processing, analysis, and insight'
+  thebe:
+    binder:
+      url: https://terrarium.evidencepub.io
+      repo: neurolibre/mystical-article # Production will override this.
+      ref: HEAD # Production will override this.
+  authors:
+    - name: John Kruper
+      orcid: 0000-0003-0081-391X
+      affiliations: uw
+      equal_contributor: true
+      github: 36000
+    - name: Ariel Rokem
+      orcid: 0000-0003-0679-1985
+      affiliations: uw
+      corresponding: true
+      email: arokem@uw.edu
+      twitter: arokem
+      equal_contributor: true
+      github: arokem
+  affiliations:
+    - id: uw
+      institution: University of Washington
+      ror: https://ror.org/00cvxb145
+      isni: 0000 0001 2298 6657
+      department: Psychology
+      address: 1417 NE Campus Parkway
+      city: Seattle
+      region: Washington
+      country: USA
+      postal_code: 98195
+      phone: +1 (206) 543-2100
+  keywords:
+    - reproducible publishing
+    - mri
+    - diffusion MRI
+    - tractography
+    - tractometry
+  github: https://github.com/tractometry/tractometry-ecosystem/
+  venue: Neurolibre #Production will override this.
+  subject: Living Preprint # Production will override this.
+  numbering:
+    headings: true
+  doi: 10.55458/neurolibre.xxxxx # Production will override this.
+  open_access: true
+  license:
+    content: CC-BY-4.0
+    code: MIT
+  abbreviations:
+    MyST: Markedly Structured Markdown
+  resources:
+    - content/001-pyafq.ipynb
+    - content/002-viz.ipynb
+    - content/003-BabyAFQ.ipynb
+    - content/004-RecoBundles.ipynb
+    - content/005-Optic-Radiations.ipynb
+    - content/006-Acoustic-Radiations.ipynb
+    - content/007-SLF-Subdivisions.ipynb
+    - content/008-GPU-Tractography.ipynb
+    - content/009-Ray-MSMT.ipynb
+    - content/010-afqinsight-mass-univariate.ipynb
+    - content/011-afqinsight-regression.ipynb
+    - content/012-afqinsight-classification.ipynb
+    - content/013-tractable.ipynb
+site:
+  template: article-theme # Or book-theme
+  options:
+    favicon: static/favicon.ico # Production will override this for branding.
+    logo: static/logo.png # Production will override this for branding.
+    twitter: arokem
