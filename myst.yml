@@ -4,7 +4,7 @@ project:
   thebe:
     binder:
       url: https://terrarium.evidencepub.io
-      repo: neurolibre/mystical-article # Production will override this.
+      repo: tractometry/tractometry-ecosystem
       ref: HEAD # Production will override this.
   authors:
     - name: John Kruper
@@ -65,8 +65,4 @@ project:
     - content/012-afqinsight-classification.ipynb
     - content/013-tractable.ipynb
 site:
-  template: article-theme # Or book-theme
-  options:
-    favicon: static/favicon.ico # Production will override this for branding.
-    logo: static/logo.png # Production will override this for branding.
-    twitter: arokem
+  template: book-theme # Or book-theme
